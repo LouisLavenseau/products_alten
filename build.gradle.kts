@@ -19,20 +19,29 @@ repositories {
 
 
 dependencies {
+	//spring boot
 	implementation("org.springframework.boot:spring-boot-starter")
 	implementation("org.springframework.boot:spring-boot-starter-web")
+	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+
+	//db
+	runtimeOnly("mysql:mysql-connector-java:8.0.33")
+	implementation("org.flywaydb:flyway-core:11.3.4")
+	implementation("org.flywaydb:flyway-mysql:11.3.4")
+
+	//mocks
+	testImplementation("org.mockito:mockito-inline:3.12.4")
+
+
+	//tests
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.boot:spring-boot-starter-test") {
 		exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
 	}
 	testImplementation ("io.rest-assured:rest-assured:5.5.1")
-	testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.10.0")
 	testImplementation("org.junit.jupiter:junit-jupiter-api:5.10.1")
+	testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.10.0")
 	testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.10.1")
-	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-	runtimeOnly("mysql:mysql-connector-java")
-
-
 }
 
 configurations.all {

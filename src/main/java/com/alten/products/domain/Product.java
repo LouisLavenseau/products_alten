@@ -1,10 +1,17 @@
 package com.alten.products.domain;
 
+import com.alten.products.api.products.ProductPatch;
 import com.alten.products.utils.SecureRandomIDGenerator;
+import jakarta.persistence.*;
 
 import java.time.Instant;
+import java.util.Map;
 
+@Entity
+@Table(name = "products")
 public class Product {
+
+        @Id
         private long id;
         private String code;
         private String name;
@@ -19,6 +26,9 @@ public class Product {
         private float rating;
         private float createdAt;
         private float updatedAt;
+
+        public Product() {
+        }
 
         public Product(
                 String code,
@@ -63,6 +73,40 @@ public class Product {
         public float getRating() { return rating; }
         public float getCreatedAt() { return createdAt; }
         public float getUpdatedAt() { return updatedAt; }
+
+        public void patch(ProductPatch productPatch) {
+                if (productPatch.code() != null) {
+                        this.code = productPatch.code();
+                }
+                if (productPatch.name() != null) {
+                        this.name = productPatch.name();
+                }
+                if (productPatch.description() != null) {
+                        this.description = productPatch.description();
+                }
+                if (productPatch.image() != null) {
+                        this.image = productPatch.category();
+                }
+                if (productPatch.price() != null) {
+                        this.price = productPatch.price();
+                }
+                if (productPatch.quantity() != null) {
+                        this.quantity = productPatch.quantity();
+                }
+                if (productPatch.internalReference() != null) {
+                        this.internalReference = productPatch.internalReference();
+                }
+                if (productPatch.shellId() != null) {
+                        this.shellId = productPatch.shellId();
+                }
+                if (productPatch.inventoryStatus() != null) {
+                        this.inventoryStatus = productPatch.inventoryStatus();
+                }
+                if (productPatch.rating() != null) {
+                        this.rating = productPatch.rating();
+                }
+                this.updatedAt = Instant.now().getEpochSecond();
+        }
 
 }
 
