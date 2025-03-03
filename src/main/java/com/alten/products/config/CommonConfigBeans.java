@@ -14,28 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class CommonConfigBeans {
 
     @Bean
-    public AuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(userDetailsService());
-        authProvider.setPasswordEncoder(passwordEncoder());
-        return authProvider;
-    }
-
-    @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
-        return config.getAuthenticationManager();
-    }
-
-    @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
-    }
-
-    @Bean
-    public UserDetailsService userDetailsService() {
-        return email -> {
-            // Remplace ceci par ton service pour récupérer les utilisateurs depuis la base
-            throw new RuntimeException("User not found");
-        };
     }
 }

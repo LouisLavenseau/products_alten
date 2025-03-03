@@ -69,6 +69,7 @@ configurations.all {
 }
 
 
+
 tasks.test {
 	useJUnitPlatform()
 }

@@ -1,4 +1,4 @@
-package com.alten.products.api.product;
+package com.alten.products.dto;
 
 public record LoginRequest(
     String email,

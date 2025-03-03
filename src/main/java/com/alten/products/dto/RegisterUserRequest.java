@@ -1,6 +1,6 @@
-package com.alten.products.api;
+package com.alten.products.dto;
 
-public record UserInfos(
+public record RegisterUserRequest(
     String username,
     String firstname,
     String email,

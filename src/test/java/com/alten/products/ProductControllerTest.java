@@ -17,7 +17,6 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
-@ActiveProfiles("test")
 public class ProductControllerTest extends IntegrationTest {
 
     @Autowired

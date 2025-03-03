@@ -1,6 +1,7 @@
 package com.alten.products.utils;
 
 import com.alten.products.domain.Product;
+import com.alten.products.dto.ProductOutputDto;
 
 import java.util.List;
 import java.util.stream.Collectors;

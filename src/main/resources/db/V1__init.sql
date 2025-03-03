@@ -2,7 +2,6 @@ CREATE TABLE IF NOT EXISTS products (
     `id` VARCHAR(64) UNIQUE NOT NULL,
     `name` VARCHAR(64) NOT NULL,
     `code` VARCHAR(64) NOT NULL,
-    `name` VARCHAR(64) NOT NULL,
     `description` TEXT NOT NULL,
     `image` VARCHAR(2048) NOT NULL,
     `category` VARCHAR(64) NOT NULL,

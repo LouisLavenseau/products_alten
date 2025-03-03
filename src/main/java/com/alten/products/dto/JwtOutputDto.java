@@ -1,9 +1,9 @@
-package com.alten.products.api;
+package com.alten.products.dto;
 
-public class JwtResponse {
+public class JwtOutputDto {
     private String token;
 
-    public JwtResponse(String token) {
+    public JwtOutputDto(String token) {
         this.token = token;
     }
 

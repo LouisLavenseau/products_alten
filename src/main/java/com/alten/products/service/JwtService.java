@@ -12,35 +12,23 @@ import java.util.Date;
 
 @Component
 public class JwtService {
-    private static final SecretKey secretKey = Keys.hmacShaKeyFor("your_secret_key_your_secret_key_your_qz28Ygdg9287hdbhqzjh373648ghfdèIOS97290347903240392jzioehEFHIOUSEFHUISEhf".getBytes());
+    private static final SecretKey secretKey = Keys.hmacShaKeyFor("o9jb6uV0943dfv0l7Jb98jbvrqz28YgdG9287hdbhqzjh373648ghf032dèI92jzVoeJEf4HvO98SEhgFH32nSE8f".getBytes());
 
     public String generateToken(User user) {
         return Jwts.builder()
                 .setSubject(user.getEmail())
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + 3600000)) // Expiration dans 1h
-                .signWith(SignatureAlgorithm.HS512, secretKey) // Utilisation correcte avec jjwt 0.11+
+                .setExpiration(new Date(System.currentTimeMillis() + 3600000))
+                .signWith(SignatureAlgorithm.HS512, secretKey)
                 .compact();
     }
 
     public static Claims extractClaims(String token) {
         return Jwts.parser()
-                .setSigningKey(secretKey) // Utilisation correcte de jjwt 0.12+
+                .setSigningKey(secretKey)
                 .build()
                 .parseClaimsJws(token)
                 .getBody();
-    }
-
-    public String extractUsername(String token) {
-        return extractClaims(token).getSubject();
-    }
-
-    public boolean isTokenExpired(String token) {
-        return extractClaims(token).getExpiration().before(new Date());
-    }
-
-    public boolean validateToken(String token, User user) {
-        return (user.getEmail().equals(extractUsername(token)) && !isTokenExpired(token));
     }
 }
 
