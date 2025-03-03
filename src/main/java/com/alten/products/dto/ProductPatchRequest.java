@@ -1,8 +1,8 @@
-package com.alten.products.api.product;
+package com.alten.products.dto;
 
 import com.alten.products.domain.InventoryStatus;
 
-public record ProductPatch(
+public record ProductPatchRequest(
         String code,
         String name,
         String description,

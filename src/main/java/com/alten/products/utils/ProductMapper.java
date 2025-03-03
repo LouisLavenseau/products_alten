@@ -1,6 +1,5 @@
 package com.alten.products.utils;
 
-import com.alten.products.api.product.ProductOutput;
 import com.alten.products.domain.Product;
 
 import java.util.List;
@@ -8,8 +7,8 @@ import java.util.stream.Collectors;
 
 public class ProductMapper {
 
-    public static ProductOutput toOutput(Product product) {
-        return new ProductOutput(
+    public static ProductOutputDto toOutput(Product product) {
+        return new ProductOutputDto(
                 product.getId(),
                 product.getCode(),
                 product.getName(),
@@ -27,7 +26,7 @@ public class ProductMapper {
         );
     }
 
-    public static List<ProductOutput> toOutputsList(List<Product> products) {
+    public static List<ProductOutputDto> toOutputsList(List<Product> products) {
         return products.stream()
                 .map(ProductMapper::toOutput)
                 .collect(Collectors.toList());
