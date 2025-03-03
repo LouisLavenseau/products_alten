@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @ConfigurationProperties
-public class ApplicationProperties {
+public class ApplicationProperties { // REMOVE
     private ServerProperties server;
     private String portt;
 

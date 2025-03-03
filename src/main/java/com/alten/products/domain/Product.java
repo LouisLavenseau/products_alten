@@ -1,11 +1,10 @@
 package com.alten.products.domain;
 
-import com.alten.products.api.products.ProductPatch;
+import com.alten.products.api.product.ProductPatch;
 import com.alten.products.utils.SecureRandomIDGenerator;
 import jakarta.persistence.*;
 
 import java.time.Instant;
-import java.util.Map;
 
 @Entity
 @Table(name = "products")

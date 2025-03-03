@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS products (
-    `id` VARCHAR(64) NOT NULL,
+    `id` VARCHAR(64) UNIQUE NOT NULL,
     `name` VARCHAR(64) NOT NULL,
     `code` VARCHAR(64) NOT NULL,
     `name` VARCHAR(64) NOT NULL,

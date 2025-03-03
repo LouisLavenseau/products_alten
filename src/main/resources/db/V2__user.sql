@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS users (
+    `id` VARCHAR(64) UNIQUE NOT NULL,
+    `username` VARCHAR(64) UNIQUE NOT NULL,
+    `firstname` VARCHAR(64) NOT NULL,
+    `email` VARCHAR(64) UNIQUE NOT NULL,
+    `password` VARCHAR(64) NOT NULL
+);

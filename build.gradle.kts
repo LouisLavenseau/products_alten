@@ -22,9 +22,19 @@ dependencies {
 	//spring boot
 	implementation("org.springframework.boot:spring-boot-starter")
 	implementation("org.springframework.boot:spring-boot-starter-web")
-	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+
+	//security
+	implementation("org.springframework.boot:spring-boot-starter-security")
+	implementation("org.springframework.boot:spring-boot-starter-validation")
+	implementation("org.springframework.security:spring-security-crypto")
+	implementation("io.jsonwebtoken:jjwt:0.12.6")
+	implementation("io.jsonwebtoken:jjwt-api:0.12.6")
+	implementation("io.jsonwebtoken:jjwt-impl:0.12.6")
+	implementation("io.jsonwebtoken:jjwt-jackson:0.12.6")
+	implementation("org.glassfish.jaxb:jaxb-runtime:2.3.3")
 
 	//db
+	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	runtimeOnly("mysql:mysql-connector-java:8.0.33")
 	implementation("org.flywaydb:flyway-core:11.3.4")
 	implementation("org.flywaydb:flyway-mysql:11.3.4")
@@ -32,6 +42,9 @@ dependencies {
 	//mocks
 	testImplementation("org.mockito:mockito-inline:3.12.4")
 
+	//utils
+	implementation("org.projectlombok:lombok:1.18.28")
+	annotationProcessor("org.projectlombok:lombok:1.18.28")
 
 	//tests
 	testImplementation("org.springframework.boot:spring-boot-starter-test")

@@ -1,4 +1,4 @@
-package com.alten.products.api.products;
+package com.alten.products.api.product;
 
 import com.alten.products.domain.InventoryStatus;
 

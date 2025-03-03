@@ -1,6 +1,6 @@
 package com.alten.products.utils;
 
-import com.alten.products.api.products.ProductOutput;
+import com.alten.products.api.product.ProductOutput;
 import com.alten.products.domain.Product;
 
 import java.util.List;

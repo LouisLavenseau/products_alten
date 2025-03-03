@@ -1,4 +1,6 @@
 package com.alten.products.service;
 
-public class ProductService {
-}
+import org.springframework.stereotype.Service;
+
+@Service
+public class ProductService { }

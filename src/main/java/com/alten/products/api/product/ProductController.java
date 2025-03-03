@@ -1,11 +1,8 @@
-package com.alten.products.api.products;
+package com.alten.products.api.product;
 
 import com.alten.products.domain.Product;
 import com.alten.products.domain.ProductRepository;
 import com.alten.products.utils.ProductMapper;
-import jakarta.transaction.Transactional;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
