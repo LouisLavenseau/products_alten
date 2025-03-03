@@ -1,20 +1,17 @@
-package com.alten.products.api.products;
+package com.alten.products.dto;
 
 import com.alten.products.domain.InventoryStatus;
 
-public record ProductOutput (
-        long id,
+public record ProductPatchRequest(
         String code,
         String name,
         String description,
         String image,
         String category,
-        float price,
-        int quantity,
+        Float price,
+        Integer quantity,
         String internalReference,
-        long shellId,
+        Long shellId,
         InventoryStatus inventoryStatus,
-        float rating,
-        float createdAt,
-        float updatedAt
+        Float rating
 ) { }

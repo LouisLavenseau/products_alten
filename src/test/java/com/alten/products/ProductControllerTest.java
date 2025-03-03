@@ -2,7 +2,7 @@ package com.alten.products;
 
 import com.alten.products.domain.InventoryStatus;
 import com.alten.products.domain.Product;
-import com.alten.products.domain.ProductRepository;
+import com.alten.products.repository.ProductRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.http.ContentType;
@@ -60,6 +60,32 @@ public class ProductControllerTest extends IntegrationTest {
                 .body("internalReference", equalTo("REF12345"))
                 .body("shellId", equalTo(4321))
                 .body("rating", equalTo(4.5f));
+    }
+
+    @Test
+    public void getShouldReturn404IfIdIncorrect() {
+        Product product = new Product(
+                "P12345",
+                "Product B",
+                "Description of Product B",
+                "http://example.com/product-b.jpg",
+                "Category 2",
+                100.50f,
+                10,
+                "REF12345",
+                4321,
+                InventoryStatus.LOWSTOCK,
+                4.5f
+        );
+
+        productRepository.save(product);
+
+        given()
+                .contentType(ContentType.JSON)
+                .when()
+                .get("/products/012")
+                .then()
+                .statusCode(404);
     }
 
     @Test
@@ -159,13 +185,7 @@ public class ProductControllerTest extends IntegrationTest {
         productMap.put("inventoryStatus", "INSTOCK");
         productMap.put("rating", 4.5);
 
-        ObjectMapper objectMapper = new ObjectMapper();
-        String jsonPayload;
-        try {
-            jsonPayload = objectMapper.writeValueAsString(productMap);
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException("parsing into json with jackson does not work", e);
-        }
+        String jsonPayload = parseIntoJson(productMap);
 
         given()
                 .contentType(ContentType.JSON)
@@ -212,13 +232,7 @@ public class ProductControllerTest extends IntegrationTest {
         productMap.put("quantity", 3);
         productMap.put("inventoryStatus", "INSTOCK");
 
-        ObjectMapper objectMapper = new ObjectMapper();
-        String jsonPayload;
-        try {
-            jsonPayload = objectMapper.writeValueAsString(productMap);
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException("parsing into json with jackson does not work", e);
-        }
+        String jsonPayload = parseIntoJson(productMap);
 
         given()
                 .contentType(ContentType.JSON)
@@ -232,6 +246,42 @@ public class ProductControllerTest extends IntegrationTest {
                 .body("price", equalTo(198.0f))
                 .body("quantity", equalTo(3))
                 .body("inventoryStatus", equalTo("INSTOCK"));
+    }
+
+    @Test
+    public void patchShouldReturn404IfIdIncorrect() {
+        Product product = new Product(
+                "P12345",
+                "Product B",
+                "Description of Product B",
+                "http://example.com/product-b.jpg",
+                "Category 2",
+                100.50f,
+                10,
+                "REF12345",
+                4321,
+                InventoryStatus.LOWSTOCK,
+                4.5f
+        );
+
+        productRepository.save(product);
+
+        Map<String, Object> productMap = new HashMap<>();
+        productMap.put("code", "T9087");
+        productMap.put("description", "New description");
+        productMap.put("price", 198);
+        productMap.put("quantity", 3);
+        productMap.put("inventoryStatus", "INSTOCK");
+
+        String jsonPayload = parseIntoJson(productMap);
+
+        given()
+                .contentType(ContentType.JSON)
+                .body(jsonPayload)
+                .when()
+                .patch("/products/012")
+                .then()
+                .statusCode(404);
     }
 
     @Test
@@ -260,5 +310,40 @@ public class ProductControllerTest extends IntegrationTest {
                 .statusCode(200);
 
         assertFalse(productRepository.existsById(product.getId()));
+    }
+
+    @Test
+    public void deleteShouldReturn404IfIdIncorrect() {
+        Product product = new Product(
+                "P12345",
+                "Product B",
+                "Description of Product B",
+                "http://example.com/product-b.jpg",
+                "Category 2",
+                100.50f,
+                10,
+                "REF12345",
+                4321,
+                InventoryStatus.LOWSTOCK,
+                4.5f
+        );
+
+        productRepository.save(product);
+
+        given()
+                .contentType(ContentType.JSON)
+                .when()
+                .delete("/products/012")
+                .then()
+                .statusCode(404);
+    }
+
+    private String parseIntoJson(Map<String, Object> map) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            return objectMapper.writeValueAsString(map);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException("parsing into json with jackson does not work", e);
+        }
     }
 }

@@ -1,11 +1,10 @@
 package com.alten.products.domain;
 
-import com.alten.products.api.products.ProductPatch;
+import com.alten.products.dto.ProductPatchRequest;
 import com.alten.products.utils.SecureRandomIDGenerator;
 import jakarta.persistence.*;
 
 import java.time.Instant;
-import java.util.Map;
 
 @Entity
 @Table(name = "products")
@@ -74,36 +73,36 @@ public class Product {
         public float getCreatedAt() { return createdAt; }
         public float getUpdatedAt() { return updatedAt; }
 
-        public void patch(ProductPatch productPatch) {
-                if (productPatch.code() != null) {
-                        this.code = productPatch.code();
+        public void patch(ProductPatchRequest productPatchRequest) {
+                if (productPatchRequest.code() != null) {
+                        this.code = productPatchRequest.code();
                 }
-                if (productPatch.name() != null) {
-                        this.name = productPatch.name();
+                if (productPatchRequest.name() != null) {
+                        this.name = productPatchRequest.name();
                 }
-                if (productPatch.description() != null) {
-                        this.description = productPatch.description();
+                if (productPatchRequest.description() != null) {
+                        this.description = productPatchRequest.description();
                 }
-                if (productPatch.image() != null) {
-                        this.image = productPatch.category();
+                if (productPatchRequest.image() != null) {
+                        this.image = productPatchRequest.category();
                 }
-                if (productPatch.price() != null) {
-                        this.price = productPatch.price();
+                if (productPatchRequest.price() != null) {
+                        this.price = productPatchRequest.price();
                 }
-                if (productPatch.quantity() != null) {
-                        this.quantity = productPatch.quantity();
+                if (productPatchRequest.quantity() != null) {
+                        this.quantity = productPatchRequest.quantity();
                 }
-                if (productPatch.internalReference() != null) {
-                        this.internalReference = productPatch.internalReference();
+                if (productPatchRequest.internalReference() != null) {
+                        this.internalReference = productPatchRequest.internalReference();
                 }
-                if (productPatch.shellId() != null) {
-                        this.shellId = productPatch.shellId();
+                if (productPatchRequest.shellId() != null) {
+                        this.shellId = productPatchRequest.shellId();
                 }
-                if (productPatch.inventoryStatus() != null) {
-                        this.inventoryStatus = productPatch.inventoryStatus();
+                if (productPatchRequest.inventoryStatus() != null) {
+                        this.inventoryStatus = productPatchRequest.inventoryStatus();
                 }
-                if (productPatch.rating() != null) {
-                        this.rating = productPatch.rating();
+                if (productPatchRequest.rating() != null) {
+                        this.rating = productPatchRequest.rating();
                 }
                 this.updatedAt = Instant.now().getEpochSecond();
         }
